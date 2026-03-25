@@ -49,8 +49,8 @@ const CONFIG = {
     'Typescript',
     'React.js',
     'Node.js',
-    'PostgreSQL'
-    'FastAPI',
+    'PostgreSQL',
+    'FastAPI'
   ],
   experiences: [
     {
