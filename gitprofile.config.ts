@@ -1,4 +1,3 @@
-// gitprofile.config.ts
 
 const CONFIG = {
   github: {
@@ -13,8 +12,8 @@ const CONFIG = {
         sortBy: 'stars', 
         limit: 8, 
         exclude: {
-          forks: false, 
-          projects: [], // These projects will not be displayed. example: ['arifszn/my-project1', 'arifszn/my-project2']
+          forks: true, 
+          projects: ['shraghav/MovieFinder-OMDB'], // These projects will not be displayed. example: ['arifszn/my-project1', 'arifszn/my-project2']
         },
       }
     },
@@ -27,9 +26,9 @@ const CONFIG = {
             'Designed an AI-driven QA automation framework to analyze 1,000 daily agent calls, effectively eliminating manual review bottlenecks. This project includes technical documentation on transcript analysis and sentiment extraction, alongside a standardized scoring system.'
         },
         {
-          title: 'Lead discovery with ICP ',
+          title: 'Lead discovery with ICP for Zywave ',
           description:
-            'Developed a high-performance FastAPI backend to manage Ideal Customer Profiles (ICPs). The core focus was implementing efficient CRUD operations to ensure seamless data handling and low-latency API responses for lead discovery.',
+            'Developed a high-performance FastAPI backend to manage Ideal Customer Profiles (ICPs). My core work was implementing efficient CRUD operations to ensure seamless data handling and low-latency API responses for lead discovery.',
         },
       ],
     },
@@ -54,14 +53,14 @@ const CONFIG = {
   ],
   experiences: [
     {
-      company: 'Avasoft',
+      company: 'Avasoft, Chennai',
       position: 'Python Backend Developer',
       from: 'July 2025',
       to: 'December 2025',
       companyLink: 'https://www.avasoft.com/',
     },
     {
-      company: 'Avasoft',
+      company: 'Avasoft, Chennai',
       position: 'Mobile Application Developer',
       from: 'September 2024',
       to: 'June 2025',
@@ -78,7 +77,7 @@ const CONFIG = {
   // ],
   educations: [
     {
-      institution: 'Bannari Amman Institute of Technology',
+      institution: 'Bannari Amman Institute of Technology, Tamil Nadu',
       degree: 'BTech, AI&DS',
       from: '2021',
       to: '2025',
@@ -89,7 +88,7 @@ const CONFIG = {
   },
   hotjar: { id: '', snippetVersion: 6 },
   themeConfig: {
-    defaultTheme: 'lofi',
+    defaultTheme: 'Wireframe',
 
     // Hides the switch in the navbar
     // Useful if you want to support a single color mode
@@ -106,40 +105,9 @@ const CONFIG = {
     themes: [
       'light',
       'dark',
-      'cupcake',
-      'bumblebee',
-      'emerald',
       'corporate',
-      'synthwave',
-      'retro',
-      'cyberpunk',
-      'valentine',
-      'halloween',
-      'garden',
-      'forest',
-      'aqua',
-      'lofi',
-      'pastel',
-      'fantasy',
       'wireframe',
-      'black',
-      'luxury',
-      'dracula',
-      'cmyk',
-      'autumn',
       'business',
-      'acid',
-      'lemonade',
-      'night',
-      'coffee',
-      'winter',
-      'dim',
-      'nord',
-      'sunset',
-      'caramellatte',
-      'abyss',
-      'silk',
-      'procyon',
     ],
   },
 
