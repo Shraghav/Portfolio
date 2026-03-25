@@ -69,26 +69,6 @@ const ExternalProjectCard = ({
 
   const renderExternalProjects = () => {
     return externalProjects.map((item, index) => (
-      <a
-        className="card shadow-md card-sm bg-base-100 cursor-pointer"
-        key={index}
-        href={item.link}
-        onClick={(e) => {
-          e.preventDefault();
-
-          try {
-            if (googleAnalyticId) {
-              ga.event('Click External Project', {
-                post: item.title,
-              });
-            }
-          } catch (error) {
-            console.error(error);
-          }
-
-          window?.open(item.link, '_blank');
-        }}
-      >
         <div className="p-8 h-full w-full">
           <div className="flex items-center flex-col">
             <div className="w-full">
@@ -120,7 +100,6 @@ const ExternalProjectCard = ({
             </div>
           </div>
         </div>
-      </a>
     ));
   };
 
