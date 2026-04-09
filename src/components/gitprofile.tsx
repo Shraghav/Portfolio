@@ -25,9 +25,7 @@ import CertificationCard from './certification-card';
 import { GithubProject } from '../interfaces/github-project';
 import GithubProjectCard from './github-project-card';
 import ExternalProjectCard from './external-project-card';
-import BlogCard from './blog-card';
 import Footer from './footer';
-import PublicationCard from './publication-card';
 
 /**
  * Renders the GitProfile component.
@@ -35,6 +33,11 @@ import PublicationCard from './publication-card';
  * @param {Object} config - the configuration object
  * @return {JSX.Element} the rendered GitProfile component
  */
+
+const manualProjectLanguages: Record<string, string[]> = {
+  'StudyBuddy': ['Python', 'FastAPI', 'React Native', 'Typescript', 'PostgreSQL', 'Docker'],
+  'MovieFinder-TMDB': ['React Native', 'TypeScript', 'API'],
+};
 const GitProfile = ({ config }: { config: Config }) => {
   const [sanitizedConfig] = useState<SanitizedConfig | Record<string, never>>(
     getSanitizedConfig(config),
@@ -47,15 +50,21 @@ const GitProfile = ({ config }: { config: Config }) => {
 
   const getGithubProjects = useCallback(
     async (publicRepoCount: number): Promise<GithubProject[]> => {
-      if (sanitizedConfig.projects.github.mode === 'automatic') {
-        if (publicRepoCount === 0) {
-          return [];
-        }
 
-        const excludeRepo =
-          sanitizedConfig.projects.github.automatic.exclude.projects
-            .map((project) => `+-repo:${project}`)
-            .join('');
+      const injectLanguages = (projects: any[]) => {
+        return projects.map((project) => {
+          return {
+            ...project,
+            language_list: manualProjectLanguages[project.name],
+          };
+        });
+      };
+
+      if (sanitizedConfig.projects.github.mode === 'automatic') {
+        if (publicRepoCount === 0) return [];
+
+        const excludeRepo = sanitizedConfig.projects.github.automatic.exclude.projects
+          .map((project) => `+-repo:${project}`).join('');
 
         const query = `user:${sanitizedConfig.github.username}+fork:${!sanitizedConfig.projects.github.automatic.exclude.forks}${excludeRepo}`;
         const url = `https://api.github.com/search/repositories?q=${query}&sort=${sanitizedConfig.projects.github.automatic.sortBy}&per_page=${sanitizedConfig.projects.github.automatic.limit}&type=Repositories`;
@@ -63,25 +72,21 @@ const GitProfile = ({ config }: { config: Config }) => {
         const repoResponse = await axios.get(url, {
           headers: { 'Content-Type': 'application/vnd.github.v3+json' },
         });
-        const repoData = repoResponse.data;
+        return injectLanguages(repoResponse.data.items);
 
-        return repoData.items;
       } else {
-        if (sanitizedConfig.projects.github.manual.projects.length === 0) {
-          return [];
-        }
+        if (sanitizedConfig.projects.github.manual.projects.length === 0) return [];
+
         const repos = sanitizedConfig.projects.github.manual.projects
-          .map((project) => `+repo:${project}`)
-          .join('');
+          .map((project) => `+repo:${project}`).join('');
 
         const url = `https://api.github.com/search/repositories?q=${repos}+fork:true&type=Repositories`;
 
         const repoResponse = await axios.get(url, {
           headers: { 'Content-Type': 'application/vnd.github.v3+json' },
         });
-        const repoData = repoResponse.data;
 
-        return repoData.items;
+        return injectLanguages(repoResponse.data.items);
       }
     },
     [
@@ -217,12 +222,7 @@ const GitProfile = ({ config }: { config: Config }) => {
                       skills={sanitizedConfig.skills}
                     />
                   )}
-                  {sanitizedConfig.experiences.length !== 0 && (
-                    <ExperienceCard
-                      loading={loading}
-                      experiences={sanitizedConfig.experiences}
-                    />
-                  )}
+
                   {sanitizedConfig.certifications.length !== 0 && (
                     <CertificationCard
                       loading={loading}
@@ -239,19 +239,10 @@ const GitProfile = ({ config }: { config: Config }) => {
               </div>
               <div className="lg:col-span-2 col-span-1">
                 <div className="grid grid-cols-1 gap-6">
-                  {sanitizedConfig.projects.github.display && (
-                    <GithubProjectCard
-                      header={sanitizedConfig.projects.github.header}
-                      limit={sanitizedConfig.projects.github.automatic.limit}
-                      githubProjects={githubProjects}
+                  {sanitizedConfig.experiences.length !== 0 && (
+                    <ExperienceCard
                       loading={loading}
-                      googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
-                    />
-                  )}
-                  {sanitizedConfig.publications.length !== 0 && (
-                    <PublicationCard
-                      loading={loading}
-                      publications={sanitizedConfig.publications}
+                      experiences={sanitizedConfig.experiences}
                     />
                   )}
                   {sanitizedConfig.projects.external.projects.length !== 0 && (
@@ -264,11 +255,13 @@ const GitProfile = ({ config }: { config: Config }) => {
                       googleAnalyticId={sanitizedConfig.googleAnalytics.id}
                     />
                   )}
-                  {sanitizedConfig.blog.display && (
-                    <BlogCard
+                  {sanitizedConfig.projects.github.display && (
+                    <GithubProjectCard
+                      header={sanitizedConfig.projects.github.header}
+                      limit={sanitizedConfig.projects.github.automatic.limit}
+                      githubProjects={githubProjects}
                       loading={loading}
                       googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
-                      blog={sanitizedConfig.blog}
                     />
                   )}
                 </div>

@@ -26,9 +26,9 @@ const SkillCard = ({
         <div className="mx-3">
           <h5 className="card-title">
             {loading ? (
-              skeleton({ widthCls: 'w-32', heightCls: 'h-8' })
+              skeleton({ widthCls: 'w-34', heightCls: 'h-8' })
             ) : (
-              <span className="text-base-content opacity-70">Tech Stack</span>
+              <span className="text-base-content opacity-80 text-lg">Tech Stack</span>
             )}
           </h5>
         </div>
@@ -37,7 +37,7 @@ const SkillCard = ({
             {loading
               ? renderSkeleton()
               : skills.map((skill, index) => (
-                  <div key={index} className="badge badge-primary badge-sm">
+                  <div key={index} className="badge badge-primary badge-sm text-sm">
                     {skill}
                   </div>
                 ))}

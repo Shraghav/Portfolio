@@ -18,17 +18,19 @@ const CONFIG = {
       }
     },
     external: {
-      header: 'My Projects',
+      header: 'Projects',
       projects: [
         {
           title: 'QA Automation technical documentation for Liberty Home Guard',
           description: 
-            'Designed an AI-driven QA automation framework to analyze 1,000 daily agent calls, effectively eliminating manual review bottlenecks. This project includes technical documentation on transcript analysis and sentiment extraction, alongside a standardized scoring system.'
+            'Designed an AI-driven QA automation framework to analyze 1,000 daily agent calls, effectively eliminating manual review bottlenecks. This project includes technical documentation on transcript analysis and sentiment extraction, alongside a standardized scoring system.',
+          link:'https://www.libertyhomeguard.com/'
         },
         {
           title: 'Lead discovery with ICP for Zywave ',
           description:
             'Developed a high-performance FastAPI backend to manage Ideal Customer Profiles (ICPs). My core work was implementing efficient CRUD operations to ensure seamless data handling and low-latency API responses for lead discovery.',
+          link:'https://www.zywave.com/'
         },
       ],
     },
@@ -44,12 +46,18 @@ const CONFIG = {
       'https://drive.google.com/file/d/1DkKl--OB0Dins-V2kbpPOVPHfzpaw2zF/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
+    'Python',
+    'FastAPI',
+    'React Native',
+    'React.js',
     'JavaScript',
     'Typescript',
-    'React.js',
-    'Node.js',
     'PostgreSQL',
-    'FastAPI'
+    'Docker',
+    'Git',
+    'Threading',
+    'REST API',
+    'SQL Alchemy',
   ],
   experiences: [
     {
@@ -58,6 +66,7 @@ const CONFIG = {
       from: 'July 2025',
       to: 'December 2025',
       companyLink: 'https://www.avasoft.com/',
+      description: "Engineered Gen AI solutions to automate the business processes, significantly reducing the time required for manual task completion.Architected FastAPI backend servers to manage CRUD operations and data flow tailored to various ICPs."
     },
     {
       company: 'Avasoft, Chennai',
@@ -65,6 +74,7 @@ const CONFIG = {
       from: 'September 2024',
       to: 'June 2025',
       companyLink: 'https://www.avasoft.com/',
+      description:"Utilized React Native and Expo to build high-performance UI components, resulting in a smooth and seamless user experience. Integrated third-party APIs including Google Auth, Firebase, Expo SDK and Native modules while documenting the entire process."
     },
   ],
   // certifications: [
@@ -103,9 +113,6 @@ const CONFIG = {
 
     // Available themes. To remove any theme, exclude from here.
     themes: [
-      'light',
-      'dark',
-      'corporate',
       'wireframe',
       'business',
     ],

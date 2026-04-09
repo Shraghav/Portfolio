@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { AiOutlineFork, AiOutlineStar, AiOutlineGithub } from 'react-icons/ai';
 import { MdInsertLink } from 'react-icons/md';
-import { ga, getLanguageColor, skeleton } from '../../utils';
+import { ga, skeleton } from '../../utils';
 import { GithubProject } from '../../interfaces/github-project';
 
 const GithubProjectCard = ({
@@ -114,14 +114,18 @@ const GithubProjectCard = ({
                 <span>{item.forks_count}</span>
               </span>
             </div>
-            <div>
-              <span className="flex items-center">
-                <div
-                  className="w-3 h-3 rounded-full mr-1 opacity-60"
-                  style={{ backgroundColor: getLanguageColor(item.language) }}
-                />
-                <span>{item.language}</span>
-              </span>
+            <div className="grid grid-cols-3 gap-x-4 gap-y-2">
+              {item.language_list && item.language_list.length > 0 && (
+                item.language_list.map((lang, i) => (
+                  <span key={i} className="flex items-center w-full justify-start">
+                    <div
+                      className="w-3 h-3 rounded-full mr-1 opacity-60 flex-shrink-0"
+                      style={{ backgroundColor: 'gray' }}
+                    />
+                    <span className="truncate">{lang}</span>
+                  </span>
+                ))
+              ) }
             </div>
           </div>
         </div>
