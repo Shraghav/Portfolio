@@ -81,26 +81,22 @@ const ThemeChanger = ({
                 tabIndex={0}
                 className="mt-16 overflow-y-auto shadow-2xl top-px dropdown-content max-h-96 min-w-max rounded-lg bg-base-200 text-base-content z-10"
               >
-                <ul className="p-4 menu menu-sm">
-                  {[
-                    themeConfig.defaultTheme,
-                    ...themeConfig.themes.filter(
-                      (item) => item !== themeConfig.defaultTheme,
-                    ),
-                  ].map((item, index) => (
-                    <li key={index}>
-                      {}
-                      <a
-                        onClick={(e) => changeTheme(e, item)}
-                        className={`${theme === item ? 'active' : ''}`}
-                      >
-                        <span className="opacity-60 capitalize">
-                          {item === themeConfig.defaultTheme ? 'Default' : item}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="p-4 menu menu-sm">
+                    {themeConfig.themes
+                      .filter((item) => item !== themeConfig.defaultTheme)
+                      .map((item, index) => (
+                        <li key={index}>
+                          <a
+                            onClick={(e) => changeTheme(e, item)}
+                            className={`${theme === item ? 'active' : ''}`}
+                          >
+                            <span className="opacity-60 capitalize">
+                              {item}
+                            </span>
+                          </a>
+                        </li>
+                      ))}
+                  </ul>
               </div>
             </div>
           )}

@@ -120,7 +120,7 @@ export const getSanitizedConfig = (
         display: !!config?.blog?.username && !!config?.blog?.source,
       },
       themeConfig: {
-        defaultTheme: config?.themeConfig?.defaultTheme || DEFAULT_THEMES[0],
+        defaultTheme: config?.themeConfig?.defaultTheme || DEFAULT_THEMES[1],
         disableSwitch: config?.themeConfig?.disableSwitch || false,
         respectPrefersColorScheme:
           config?.themeConfig?.respectPrefersColorScheme || false,

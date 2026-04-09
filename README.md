@@ -388,7 +388,7 @@ The default theme can be specified.
 const CONFIG = {
   // ...
   themeConfig: {
-    defaultTheme: 'light',
+    defaultTheme: 'wireframe',
     // ...
   },
 };
